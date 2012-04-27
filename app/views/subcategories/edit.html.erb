@@ -1,0 +1,15 @@
+<%= link_to("Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="Edit Subcategory">
+  <h2>Edit Subject</h2>
+
+  <%= form_for(:subcategory, :url => {:action => 'update', :id => @subcategory.id}) do |f| %>
+      <%= select( :subcategory, "category_id", @categories.map {|u| [u.category,u.id]}) %>
+
+      <%= f.text_field(:subcategory) %>      
+
+      <div class="update">
+        <%=	 submit_tag("Update Subcategory") %>
+      </div>
+  <% end %>
+</div>

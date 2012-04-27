@@ -1,0 +1,22 @@
+
+<div id="bread-crumbs">
+  <ul>
+    <li><h3><%= link_to(@subcategory.category.category, {:controller => 'public', :action => 'subcategories', :id => @subcategory.category.id}) %></h3></li>
+
+    <li>
+      <h3><%= @subcategory.subcategory %></h3>
+    </li>
+  </ul>
+</div>
+<div id="list">
+    <ul>
+    <% @recipes.each do |recipe| %>
+
+        <li>
+          <h2><%= link_to(recipe.title.html_safe, {:controller => 'public', :action => 'recipe', :id => recipe.id}) %></h2>
+          <h3><%= recipe.subtitle.html_safe %></h3>
+
+        </li>
+    <% end %>
+    </ul>
+</div>

@@ -1,0 +1,122 @@
+<div id="bd" class="recipe-page">
+    <div class="wrapper">
+        <div id="bread-crumbs">
+            <ul>
+                <li><h3><a href="/categories">Admin</a></h3></li>
+                <li><h3><%= link_to(@recipe.subcategory.category.category, {:controller => 'subcategories', :action => 'index', :id => @recipe.subcategory.category.id}) %></h3></li>
+                <li><h3><%= link_to(@recipe.subcategory.subcategory, {:controller => 'subcategories',:action => 'show', :id => @recipe.subcategory.id}) %></h3></li>
+            </ul>
+        </div>
+        <div id="main-edit-wrapper">
+            <ul>
+                <li>
+                    <span id="delete-recipe" class="button-wrapper">
+                        <a href="#" class="button"><i>x</i>Delete</a>
+                    </span>
+
+                </li>
+            </ul>
+        </div>
+        <div id="recipe-wrapper">
+            <div class="hd">
+                <span class="button-wrapper edit recipe-hd"><span class="button"><i></i>Edit</span></span>
+                <h2 id="recipe-title"><%= @recipe.title.html_safe %></h2>
+                <h3 id="recipe-subtitle"><%= @recipe.subtitle.html_safe %></h3>
+
+            </div>
+
+            <div class="bd">
+                <% form_for @recipe, :html => {:action => 'update', :method => 'put', :id => 'recipe-image-submit',  :multipart => true, :remote => true } do |f| %>
+                    <%= f.file_field :recipe_image %>
+                    <button id="recipe-image-submit" class="button-wrapper" name="commit" type="submit"><span class="button">Upload Image</span></button>
+                <% end %>
+                <span class="button-wrapper edit recipe-bd"><span class="button"><i></i>Edit</span></span>
+                <div id="recipe-ingredients"><%= @recipe.ingredients.html_safe %></div>
+                <div id="recipe-directions"><%= @recipe.directions.html_safe %></div>
+            </div>
+        </div>
+
+        <div id="tags-wrapper">
+            <h4>Tags</h4>
+
+            <div id="tags">
+            </div>
+        </div>
+    </div>
+
+</div>
+<% content_for :javascript do %>
+    <script type="text/javascript">
+        /*******  TITLE UPDATE *******/
+        $('.recipe-hd').live('click', function(){
+            var title = $('#recipe-title').text();
+            var subtitle = $('#recipe-subtitle').text();
+            var form = '<%= form_for @recipe, :html => {:action => 'update', :method => 'put', :id => 'title-submit', :remote => true} do %><input id="recipe_title" name="recipe[title]" size="30" value="'+title+'"><input id="recipe_subtitle" name="recipe[subtitle]" size="30" type="text" value="'+subtitle+'"><button id="recipe_submit" class="button-wrapper" name="commit" type="submit"><span class="button">Update Title</span></button><button class="button-wrapper" id="title-cancel"><span class="button">Cancel</span></button><% end %>';
+            $(this).parent().html(form);
+
+            $('#title-cancel').click(function(){
+                $('#recipe-wrapper .hd').html('<span class="button-wrapper edit recipe-hd"><span class="button"><i></i>Edit</span></span><h2 id="recipe-title">'+title+'</h2><h3 id="recipe-subtitle">'+subtitle+'</h3>');
+            });
+
+        });
+        $("#title-submit").live("ajax:success", function(event, data, status, xhr) {
+          var title = $('#recipe_title').val();
+          var subtitle = $('#recipe_subtitle').val();
+          $('#recipe-wrapper .hd').html('<span class="button-wrapper edit recipe-hd"><span class="button"><i></i>Edit</span></span><h2 id="recipe-title">'+title+'</h2><h3 id="recipe-subtitle">'+subtitle+'</h3>');
+        });
+
+
+        /*******  RECIPE UPDATE *******/
+
+        $('.recipe-bd').live('click', function(){
+            var ingredients = $('#recipe-ingredients').html();
+            var directions = $('#recipe-directions').html();
+            var form = '<%= form_for @recipe, :html => {:action => 'update', :method => 'put', :id => 'recipe-submit', :remote => true} do %><textarea id="recipe_ingredients" name="recipe[ingredients]">'+ingredients+'</textarea><textarea id="recipe_directions" name="recipe[directions]">'+directions+'</textarea><button id="recipe_submit" class="button-wrapper" name="commit" type="submit" ><span class="button">Update Recipe</span></button><button class="button-wrapper" id="recipe-cancel"><span class="button">Cancel Recipe</span></button><% end %>';
+            $(this).parent().html(form);
+
+
+            $('#recipe-cancel').click(function(){
+                $('#recipe-wrapper .bd').html('<span class="button-wrapper edit recipe-bd"><span class="button"><i></i>Edit</span></span><div id="recipe-ingredients"><p>'+ingredients+'</p></div><div id="recipe-directions"><p>'+directions+'</p></div>');
+            });
+        });
+        $("#recipe-submit").live("ajax:success", function(event, data, status, xhr) {
+          var ingredients = $('#recipe_ingredients').val();
+          var directions = $('#recipe_directions').val();
+          $('#recipe-wrapper .bd').html('<span class="button-wrapper edit recipe-bd"><span class="button"><i></i>Edit</span></span><div id="recipe-ingredients"><p>'+ingredients+'</p></div><div id="recipe-directions"><p>'+directions+'</p></div>');
+        });
+
+
+        /*******  RECIPE IMAGE UPDATE *******/
+//
+//        $('.recipe-bd').live('click', function(){
+//            var ingredients = $('#recipe-ingredients').html();
+//            var directions = $('#recipe-directions').html();
+//            var form = '<%= form_for @recipe, :html => {:action => 'update', :method => 'put', :id => 'recipe-submit', :remote => true} do %><textarea id="recipe_ingredients" name="recipe[ingredients]">'+ingredients+'</textarea><textarea id="recipe_directions" name="recipe[directions]">'+directions+'</textarea><button id="recipe_submit" class="button-wrapper" name="commit" type="submit" ><span class="button">Update Recipe</span></button><button class="button-wrapper" id="recipe-cancel"><span class="button">Cancel Recipe</span></button><% end %>';
+//            $(this).parent().html(form);
+//
+//
+//            $('#recipe-cancel').click(function(){
+//                $('#recipe-wrapper .bd').html('<span class="button-wrapper edit recipe-bd"><span class="button"><i></i>Edit</span></span><div id="recipe-ingredients"><p>'+ingredients+'</p></div><div id="recipe-directions"><p>'+directions+'</p></div>');
+//            });
+//        });
+        $("#recipe-image-submit").live("ajax:success", function(event, data, status, xhr) {
+//          var ingredients = $('#recipe_ingredients').val();
+//          var directions = $('#recipe_directions').val();
+//          $('#recipe-wrapper .bd').html('<span class="button-wrapper edit recipe-bd"><span class="button"><i></i>Edit</span></span><div id="recipe-ingredients"><p>'+ingredients+'</p></div><div id="recipe-directions"><p>'+directions+'</p></div>');
+        });
+
+        
+        /*******  DELETE RECIPE *******/
+        $('#delete-recipe').click(function(e){
+            e.preventDefault();
+            $('#bd').append('<div class="lb-content"><p>Are you sure you want to delete this recipe?</p> <div class="ft"><span class="button-wrapper"><%= link_to({:action => 'destroy', :id => @recipe.id}, :method => 'delete', :class => 'button', :id => 'delete-recipe-confirm') do %><i>x</i>Delete<% end %></span><span class="button-wrapper delete-cancel"><a class="button">Cancel</a></span></div></div>');
+            $('.delete-cancel').click(function(){
+                $('.lb-content').css('display','none');
+            });
+            
+        });
+
+
+
+    </script>
+<% end %>

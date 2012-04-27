@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookbook</title>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="hd">
+      <div class="wrapper"><h1><a href="/admin">Gretchen&#39;s Cookbook</a></h1></div>
+    </div>
+    <div id="bd">
+        <div class="wrapper">
+          <% if !flash[:notice].blank? %>
+            <div id="notice"><%= flash[:notice] %></div>
+          <% end %>
+            <%= yield %>
+        </div>
+    </div>
+    <div id="ft"></div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $('#category').change(function(){
+            var cat = $(this).val();
+            $.ajax({
+                url: "/ajax/subcategories.json",
+                data: "cat=" + cat,
+                type: 'GET',
+                success: function(data) {
+                    $('#recipe_subcategory_id').empty();
+                    $(data).each(function(index,subcategory) {
+                        $('#recipe_subcategory_id').append('<option value="' + subcategory.subcategory.id + '">' + subcategory.subcategory.subcategory + '</option>');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

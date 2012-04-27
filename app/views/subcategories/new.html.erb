@@ -1,0 +1,14 @@
+<h1>New Subcategory</h1>
+
+<%= form_for(@subcategory, :url => {:action => 'create'}) do |f| %>
+
+    <%= select( :subcategory, "category_id", @categories.map {|u| [u.category,u.id]}) %>
+    <%= f.text_field(:subcategory) %>
+
+
+      <div class="submit">
+        <%=	 submit_tag("Create Subcategory") %>
+      </div>
+  <% end %>
+
+<%= link_to("Back to List", {:controller => 'categories', :action => 'index'}, :class => 'back-link') %>

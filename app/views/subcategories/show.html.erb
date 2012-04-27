@@ -1,0 +1,41 @@
+<div id="bread-crumbs">
+    <ul>
+      <li><h3><%= @subcategory.category.category.html_safe %></h3></li>
+      <li><h3><%= @subcategory.subcategory.html_safe %></h3></li>
+    </ul>
+</div>
+<div id="main-edit-wrapper">
+  <ul>
+    <li>
+      <span class="button-wrapper">
+        <%= link_to({:controller => 'recipes',:action => 'new'}, :class => 'button') do %>
+            <i>+</i>Add New Recipe
+        <% end %>
+      </span>
+    </li>
+  </ul>
+</div>
+<div id="list">
+    <ul>
+    <% @subcategory.recipes.each do |recipe| %>
+
+          <li>
+          <h2><%= link_to(recipe.title.html_safe, {:controller => 'recipes', :action => 'show', :id => recipe.id}) %></h2>
+          <h3><%= recipe.subtitle.html_safe %></h3>
+          <span class="edit-wrapper">
+            <ul>
+              <li>
+                <span class="button-wrapper">
+                  <%= link_to({:controller => 'recipes', :action => 'edit', :id => recipe.id}, :class => 'button') do %>
+                      <i>-</i>Edit
+                  <% end %>
+                </span>
+              </li>
+
+
+            </ul>
+          </span>
+        </li>
+    <% end %>
+    </ul>
+</div>

@@ -1,0 +1,19 @@
+<% @page_title = "Admin Menu" %>
+
+<div>
+  <h2>Admin Menu</h2>
+
+  <div class="identity">Logged in as:</div>
+  <%= form_tag(:action => 'attempt_login') do %>
+  <%= label_tag(:email) %>
+  <%= text_field_tag(:email) %>
+  <%= label_tag(:password) %>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Login") %>
+
+  <% end %>
+  <ul>
+    <li><%= link_to("edit stuff", :controller => 'categories') %></li>
+    <li><%= link_to("Logout", :action => 'logout') %></li>
+  </ul>
+</div>

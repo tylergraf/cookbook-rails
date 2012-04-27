@@ -1,0 +1,14 @@
+<%= link_to("Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="subject edit">
+  <h2>Edit Subject</h2>
+
+  <%= form_for(:category, :url => {:action => 'update', :id => @category.id}) do |f| %>
+
+      <%= f.text_field(:category) %>      
+
+      <div class="update">
+        <%=	 submit_tag("Update Category") %>
+      </div>
+  <% end %>
+</div>

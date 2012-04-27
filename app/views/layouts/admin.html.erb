@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookbook</title>
+  <script type="text/javascript" src="http://use.typekit.com/nga8gjw.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link href='http://fonts.googleapis.com/css?family=OFL+Sorts+Mill+Goudy+TT' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
+
+</head>
+<body>
+    <div id="hd">
+        <div class="wrapper"><h1><a href="/admin">Gretchen&#39;s Cookbook</a></h1></div>
+    </div>
+    <div id="bd">
+        <div class="wrapper">
+          <% if !flash[:notice].blank? %>
+            <div id="notice"><%= flash[:notice] %></div>
+          <% end %>
+            <%= yield %>
+        </div>
+      <div id="result"></div>
+    </div>
+    <div id="ft"></div>
+    <%= javascript_include_tag 'jquery.min.js' %>
+    <%= javascript_include_tag 'jquery-ui.min.js' %>
+    <%= javascript_include_tag 'jquery.autocomplete.js' %>
+    <%= javascript_include_tag 'rails.js' %>
+    <script type="text/javascript">
+        $('.cat').click(function(){
+            $(this).parent().find('ul').slideToggle('fast');
+        });
+        $('#search').autocomplete('/ajax/search_ajax',{
+            formatItem: function(data, i, n, value) {
+			return "<span>" + value.split(".")[0] + "</span> ";
+            },
+            formatResult: function(data, value) {
+                return value.split(".")[0];
+            }
+        });
+        $('#search').result(function(event, data, formatted) {
+            if (data)
+			$('input#id').val(formatted.split(".")[1]);
+            $(this).search();
+        });
+    </script>
+    <%= yield :javascript %>
+</body>
+</html>

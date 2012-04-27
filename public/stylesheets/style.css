@@ -1,0 +1,568 @@
+/*RESET*/
+
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: inherit;	vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {	display: block;}body {	line-height: 1;}ol, ul {	list-style: none;}blockquote, q {	quotes: none;}blockquote:before, blockquote:after,q:before, q:after {	content: '';	content: none;}table {	border-collapse: collapse;	border-spacing: 0;}
+
+/*GLOBAL STYLES*/
+@font-face {
+    font-family: "museo-slab", serif;
+    src: url(../-fonts/Museo_Slab_500.otf);
+    font-weight:400;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    text-transform: uppercase;
+    font-family: "museo-slab",serif;
+    font-weight: normal;
+    color: #5f8fa4;
+}
+a, a.visited {
+    text-decoration: none;
+    color: #5f8fa4;
+}
+a:hover {
+    text-decoration: underline;
+}
+p {
+    font-family: "chaparral-pro", serif;
+    color: #5f8fa4;
+}
+i {
+    font-style: normal;
+}
+.button-wrapper:hover {
+    opacity: 0.9;
+}
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+.wf-loading h1, .wf-loading p, .wf-loading li {
+	font-family: serif;
+}
+.hd,.bd,.ft {
+    position: relative;
+}
+
+.edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-family: "museo-slab", serif;
+    text-transform:uppercase;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+}
+
+/*FORM ELEMENTS*/
+input {
+    border: 1px solid #ccc;
+    height: 24px;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+.button-wrapper {
+    background: #477796;
+    border: 1px solid #3e6782;
+    float: left;
+}
+.button-wrapper i {
+    color: #fff;
+    margin-right: 6px;
+    font-weight: bold;
+    float: left;
+    text-transform: lowercase;
+}
+.button {
+    color: #fff;
+    text-decoration: none !important;
+    border-top: 1px solid #769bb3;
+    padding: 4px 8px;
+    display: block;
+    font-family: "museo-slab",serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+    line-height: 14px;
+}
+
+
+/*LIGHTBOX*/
+.lb-overlay{
+    /*display: none;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.lb-content {
+    /*display: none;*/
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 35%;
+    height: 125px;
+    border: 16px solid #aaa;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+.lb-content .ft {
+    height: 40px;
+    background-color: #eaeaea;
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 15px;
+}
+.lb-content .ft .button-wrapper {
+    margin-left: 20px;
+}
+
+
+.lb-content p {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+    margin-left: 20px;
+    margin-top: 20px;
+    
+}
+
+/*HEADER*/
+#hd {
+    background: #3e8db1 url(../images/texture.png) repeat scroll 0 0;
+    width: 100%;
+    padding: 30px 0;
+}
+body {
+    background-color: #f3f3f3;
+}
+#hd h1 a{
+    color: #fff;
+    font-size: 44px;
+    font-weight: 700;
+    text-shadow: rgba(0,0,0,0.1) -2px 0, rgba(0,0,0,0.01) 0 -2px, rgba(255,255,255,0.1) 0 2px, rgba(0,0,0,0.1) 0 -2px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+#hd h1 a:hover{
+    text-decoration:none;
+}
+#nav {
+    margin-top: 10px;
+}
+#nav li a{
+    text-transform: uppercase;
+    font-family: "museo-slab",serif;
+    color: #fff;
+}
+#nav li {
+    float: left;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+/*TAXONOMY*/
+#cats, #subcats, .recipe-list {
+    float: left;
+    margin-top: 20px;
+    margin-left:3px;
+}
+#cats {
+    background-color: #cae0e7;
+    border: 2px solid #c1d5dd;
+    margin-left: 0;
+}
+#subcats {
+    width: 150px;
+    background-color: #adcedb;
+    border: 2px solid #98bac7;
+    display: none;
+    min-height: 351px;
+
+}
+.recipe-list {
+    width: 590px;
+    background-color: #5697b2;
+    border: 2px solid #4e889f;
+    padding: 5px 20px;
+    display: none;
+    min-height: 341px;
+
+}
+
+
+#cats h2{
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #9cb0b7;
+    line-height: 39px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+#cats h2.selected{
+    color: #427d94;
+}
+
+#subcats h3{
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #427d94;
+    line-height: 39px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+#subcats h3.selected{
+    color: #356476;
+}
+
+#cats li, #subcats li {
+    position: relative;
+}
+#cats li i, #subcats li i {
+    background: transparent url(../images/arrows.png) no-repeat scroll 0 0;
+    height: 20px;
+    width: 18px;
+    position: absolute;
+    right: -8px;
+    top: 8px;
+}
+#subcats li i{
+    background-position:0 -21px;
+}
+
+.recipe-list .hd {
+    cursor: pointer;
+}
+.recipe-list h4 {
+    font-weight: 200;
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: #fcfbf7;
+    line-height: 40px;
+    text-shadow: rgba(0,0,0,0.1) -1px 0, rgba(0,0,0,0.1) 0 -1px, rgba(255,255,255,0.1) 0 1px, rgba(0,0,0,0.1) 0 -2px;
+    display: inline;
+    cursor: pointer;
+}
+
+.recipe-list .hd span{
+    font-family: "chaparral-pro", serif;
+    font-weight: normal;
+    font-size: 18px;
+    letter-spacing: normal;
+    color: #fcfbf7;
+    text-transform: none;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.recipe-list .bd {
+    background-color: #d9e6ec;
+    padding: 10px;
+    display: none;
+    
+}
+
+.recipe-list .bd p{
+    color: #578193;
+    margin-bottom: 10px;
+    line-height: 18px;
+}
+#view-recipe {
+    float: right;
+}
+
+/*SEARCH*/
+#search-wrapper {
+    width: 944px;
+    margin: 20px 0;
+}
+label {
+    display: none;
+}
+input#search {
+    height: 30px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background: #fff url(/images/search.png) no-repeat scroll right 5px;
+    padding: 0 4px;
+    text-transform: uppercase;
+    font-family: "museo-slab", serif;
+    font-size: 20px;
+    color: #4e889f;
+
+}
+.ac_results {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+    width: 952px !important;
+}
+.ac_results ul {
+    overflow-y: visible !important;
+    max-height: 500px !important;
+}
+.ac_results li, #list li {
+    height: 40px;
+    font-size: 20px;
+    line-height: 30px;
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+    border-bottom:1px dashed #ccc;
+}
+#list li{
+    padding: 10px 20px;
+    position: relative;
+}
+
+.ac_results li:last-child, #list li:last-child {
+    border: none;
+}
+
+.ac_results li h2, #list li h2 {
+    font-size: 18px;
+    line-height: 18px;
+    margin-bottom: 4px;
+}
+.ac_results li h3, #list li h3 {
+    font-family: "chaparral-pro", serif;
+    font-size: 16px;
+    text-transform: capitalize;
+    line-height: 16px;
+}
+.ac_results li h2 strong, .ac_results li h3 strong{
+    font-weight: normal;
+    color: #588396;
+}
+.ac_results li:hover {
+    background-color: #f9f9f9;
+}
+.ac_results li.ac_even, #list li:nth-child(even) {
+    background: transparent url(/images/search-bg.png);
+}
+
+#list {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    width: 952px;
+    margin-bottom: 20px;
+    float: left;
+    clear: left;
+}
+
+
+
+/******************RECIPE PAGE******************/
+#bread-crumbs {
+    width: 100%;
+    margin: 20px 0;
+}
+#bread-crumbs li{
+    float: left;
+    border-left: 1px dashed #ccc;
+    padding: 0 10px;
+}
+#bread-crumbs li:first-child{
+    border-left: none;
+}
+#bread-crumbs h3{
+    font-weight: 500;
+    color: #6d9eb3;
+
+}
+#recipe-wrapper {
+    margin-top: 20px;
+    width: 70%;
+    float: left;
+    clear: left;
+    padding: 20px;
+    border: 1px dashed #ccc;
+    background-color: #fff;
+}
+#recipe-wrapper #recipe-title {
+    font-size: 22px;
+
+    font-weight: normal;
+}
+#recipe-wrapper .hd {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+#recipe-wrapper #recipe-subtitle {
+    font-family: "chaparral-pro", serif;
+    font-weight: normal;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding: 10px 0;
+}
+#recipe-wrapper p {
+    margin-top: 20px;
+    padding-right: 30px;
+    font-size: 16px;
+    line-height: 21px;
+}
+#recipe-directions p {
+    line-height: 24px;
+
+}
+#social-wrapper {
+    width: 20%;
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-bottom: 1px dashed #ccc;
+    
+}
+
+#social-wrapper a {
+    color: #5f8fa4;    
+    padding-bottom: 10px;
+    float: left;
+}
+#tags-wrapper {
+    width: 20%;
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+#tags {
+    background-color: #fff;
+    width: 100%;
+    min-height: 100px;
+    border: 1px dashed #ccc;
+    margin-top: 10px;
+
+}
+
+
+
+/*admin pages*/
+#main-edit-wrapper {
+    float: right;
+    
+}
+#main-edit-wrapper li{
+    display: inline;
+    margin-right: 6px;
+}
+#main-edit-wrapper li a{
+    font-family: "museo-slab", serif;
+    text-transform: uppercase;
+    font-size: 12px;
+
+}
+#list .edit-wrapper {
+    position: absolute;
+    right: 20px;
+    top: 3px;
+    display: none;
+}
+#list li:hover .edit-wrapper{
+    display: block;
+}
+#list .edit-wrapper .button-wrapper{
+    width: 70px;
+}
+
+#list .edit-wrapper li{
+    border: none;
+    background: none;
+    height: auto;
+    float: left;
+    clear: left;
+    padding: 0;
+    margin-top: 5px;
+    line-height: 10px;
+}
+#list .edit-wrapper li a{
+    font-family: "museo-slab", serif;
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+}
+
+/*ADMIN RECIPE PAGE*/
+#recipe-wrapper button {
+    float: none;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#recipe-wrapper input {
+    display: block;
+    width: 200px;
+    margin-bottom: 10px;
+}
+#recipe-wrapper textarea {
+    width: 97%;
+    height: 150px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    resize: none;
+    border: 1px solid #ddd;
+    padding: 10px;
+    line-height: 21px;
+    font-family: "Courier New", serif;
+}
+#recipe-wrapper .hd:hover .edit,
+#recipe-wrapper .bd:hover .edit {
+    display: block;
+}
+.recipe-page #main-edit-wrapper {
+    margin-right: 240px;
+}
+
+/* ADMIN SUBCATEGORY PAGE */
+form#new-subcategory {
+    margin-top: 10px;
+    float: left;
+}
+form#new-subcategory input {
+    float: left;
+    width: 300px;
+    padding: 4px 10px;
+    font-family: "museo-slab", serif;
+    text-transform: uppercase;
+    font-size: 14px;
+
+}
+form#new-subcategory button {
+    float: left;
+    clear: left;
+}
+form#subcategory-update {
+    display: none;
+}
+form#subcategory-update input {
+    float: left;
+}
+form#subcategory-update .button-wrapper {
+    margin-left: 10px;
+}
+
+/*category list page*/
+
+#notice {
+    border: 1px solid green;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}

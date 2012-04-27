@@ -1,0 +1,17 @@
+
+<div id="bd">
+    <div id="cats">
+        <ul>
+            <% @categories.each do |category| %>
+                <li><h2 id="<%= category.id %>"><%= category.category %></h2></li>
+            <% end %>
+
+        </ul>
+    </div>
+    <div id="subcats">
+        <ul></ul>
+    </div>
+    <div class="recipe-list">
+        <ul></ul>
+    </div>
+</div>

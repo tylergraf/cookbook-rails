@@ -1,0 +1,19 @@
+<ul>
+  <% @recipes.each do |recipe| %>
+
+      <li>
+        <div class="hd">
+          <h4><%= recipe.title.html_safe %></h4>
+          <span><%= recipe.subtitle.html_safe %></span></div>
+        <div class="bd">
+          <div id="view-recipe">
+            <h5><%= link_to('View Recipe', {:controller => 'public', :action => 'recipe', :id => recipe.id}) %></h5>           
+          </div>
+
+          <div class="ingredients"><%= recipe.ingredients.html_safe %></div>
+          <div class="instructions"><%= recipe.directions.html_safe %></div>
+        </div>
+      </li>
+  <% end %>
+
+</ul>

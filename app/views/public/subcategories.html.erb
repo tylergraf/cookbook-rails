@@ -1,0 +1,15 @@
+<div id="bread-crumbs">
+    <ul>
+      <li><h3><%= @category.category %></h3></li>
+    </ul>
+</div>
+<div id="list">
+    <ul>
+    <% @subcategories.each do |subcategory| %>
+
+        <li>
+          <h2><%= link_to(subcategory.subcategory, {:controller => 'public', :action => 'list', :id => subcategory.id}) %></h2>
+        </li>
+    <% end %>
+    </ul>
+</div>

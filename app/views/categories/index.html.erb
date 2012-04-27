@@ -1,0 +1,54 @@
+<div id="search-wrapper">
+    <form action="/ajax/search">
+        <label for="search">Search</label>
+        <input type="text" id="search">
+        <input type="hidden" id="id" name="id">
+    </form>
+</div>
+
+
+<div id="bread-crumbs">
+  <ul>
+    <li><h3>Categories</h3></li>
+  </ul>
+</div>
+<div id="main-edit-wrapper">
+  <ul>
+    <li>
+      <span class="button-wrapper">
+        <%= link_to({:action => 'new'}, :class => 'button') do %>
+            <i>+</i>Add New Category
+        <% end %>
+      </span>
+    </li>
+  </ul>
+</div>
+<div id="list">
+    <ul>
+    <% @categories.each do |category| %>
+
+        <li>
+          <h2><%= link_to(category.category, {:controller => 'subcategories', :id => category.id}) %></h2>
+          <span class="edit-wrapper">
+            <ul>
+              <li>
+                <span class="button-wrapper">
+                  <%= link_to({:action => 'edit', :id => category.id}, :class => 'button') do %>
+                      <i>-</i>Edit
+                  <% end %>
+                </span>
+              </li>
+              <li>
+                <span class="button-wrapper">
+                  <%= link_to({:action => 'destroy', :id => category.id}, :class => 'button') do %>
+                      <i>x</i>Delete
+                  <% end %>
+                </span>
+              </li>
+
+            </ul>
+          </span>
+        </li>
+    <% end %>
+    </ul>
+</div>
